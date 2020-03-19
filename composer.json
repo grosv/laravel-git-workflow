@@ -1,5 +1,5 @@
 {
-    "name": "grosv/laravel-package-template",
+    "name": "grosv/laravel-git-workflow",
     "description": "A repository template for Laravel packages",
     "type": "library",
     "license": "MIT",
@@ -20,7 +20,7 @@
     },
     "autoload": {
         "psr-4": {
-            "Grosv\\LaravelPackageTemplate\\": "src/"
+            "Grosv\\LaravelGitWorkflow\\": "src/"
         }
     },
     "autoload-dev": {
@@ -31,7 +31,7 @@
     },
     "extra": {
         "laravel": {
-            "providers": "Grosv\\LaravelPackageTemplate\\LaravelPackageTemplateProvider"
+            "providers": "Grosv\\LaravelGitWorkflow\\LaravelGitWorkflowProvider"
         }
     }
 }

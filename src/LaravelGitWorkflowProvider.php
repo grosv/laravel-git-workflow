@@ -1,12 +1,12 @@
 <?php
 
 
-namespace Grosv\LaravelPackageTemplate;
+namespace Grosv\LaravelGitWorkflow;
 
 
 use Illuminate\Support\ServiceProvider;
 
-class LaravelPackageTemplateProvider extends ServiceProvider
+class LaravelGitWorkflowProvider extends ServiceProvider
 {
     public function boot(): void
     {
