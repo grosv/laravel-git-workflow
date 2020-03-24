@@ -12,7 +12,8 @@ class StartIssueCommandTest extends TestCase
     public function it_can_start_new_issue_pass_to_command()
     {
         $this->mock(SetBranchForIssue::class, function ($mock) {
-            $mock->shouldReceive('execute')->once();
+            $mock->shouldReceive('execute')->once()
+            ->andReturn();
         });
 
         $this->artisan('issue:start', ['issue' => '1_this_is_an_issue'])
