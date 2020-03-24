@@ -19,8 +19,9 @@ class StartIssue extends Command
     {
         $this->issue = $this->argument('issue');
         if (!preg_match('/_/', $this->issue)) {
-            return;
+            $this->issue = null;
         }
+
         if (!$this->issue) {
             $process = new Process(['gh', 'issue', 'list']);
             $process->run();
