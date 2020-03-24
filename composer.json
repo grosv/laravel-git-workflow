@@ -12,11 +12,12 @@
     "minimum-stability": "dev",
     "prefer-stable": true,
     "require": {
-        "php": "^7.3",
-        "illuminate/support": "^6.0|^7.0"
+        "php": "^7.4",
+        "illuminate/support": "^7.0"
     },
     "require-dev": {
-        "orchestra/testbench": "^4.6"
+        "orchestra/testbench": "^5.0",
+        "nunomaduro/collision": "^4.1"
     },
     "autoload": {
         "psr-4": {
