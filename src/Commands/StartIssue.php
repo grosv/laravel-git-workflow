@@ -18,6 +18,9 @@ class StartIssue extends Command
     public function handle()
     {
         $this->issue = $this->argument('issue');
+        if (!preg_match('/_/', $this->issue)) {
+            return;
+        }
         if (!$this->issue) {
             $process = new Process(['gh', 'issue', 'list']);
             $process->run();

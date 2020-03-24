@@ -73,7 +73,11 @@ class StartDay extends Command
 
         $issue = $this->choice('Which issue would you like to work on?', $open, 0);
 
-        Artisan::call('issue:start ' . $issue);
+        if ($issue !== 0 && $issue !== 'None Right Now') {
+            Artisan::call('issue:start ' . $issue);
+        }
+
+
 
 
 
