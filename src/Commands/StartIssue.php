@@ -36,6 +36,7 @@ class StartIssue extends Command
         }
 
         (new SetBranchForIssue())->execute($this->issue);
+        dd('got this far');
         $this->info('You should be on branch ' . $this->issue . ' (verify with `git status`)');
         $this->info('Use `php artisan issue:update` to update your work throughout the day and `php artisan day:end` at the end of the day.');
     }
