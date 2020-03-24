@@ -15,7 +15,9 @@ class StartIssue extends Command
     public ?string $issue = null;
     public array $branch = [];
 
-    public function handle()
+
+    public function handle(SetBranchForIssue $branch)
+
     {
         $this->issue = $this->argument('issue');
         if (!preg_match('/_/', $this->issue)) {
@@ -35,7 +37,8 @@ class StartIssue extends Command
             $this->issue = $this->choice('Which issue would you like to work on?', $open, 0);
         }
 
-        (new SetBranchForIssue())->execute($this->issue);
+        $branch->execute($this->issue);
+
 
         $this->info('You should be on branch ' . $this->issue . ' (verify with `git status`)');
         $this->info('Use `php artisan issue:update` to update your work throughout the day and `php artisan day:end` at the end of the day.');
