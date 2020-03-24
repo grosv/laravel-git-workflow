@@ -15,7 +15,7 @@ class StartIssueCommandTest extends TestCase
             $mock->shouldReceive('execute')->once();
         });
 
-        $this->artisan('issue:start 1_this_is_an_issue')
+        $this->artisan('issue:start', ['issue' => '1_this_is_an_issue'])
             ->expectsOutput('You should be on branch 1_this_is_an_issue (verify with `git status`)')
             ->expectsOutput('Use `php artisan issue:update` to update your work throughout the day and `php artisan day:end` at the end of the day.')
             ->assertExitCode(0);
