@@ -4,6 +4,8 @@
 namespace Grosv\LaravelGitWorkflow\Commands;
 
 
+use Composer\Util\Git;
+use Grosv\LaravelGitWorkflow\Actions\GitCommand;
 use Grosv\LaravelGitWorkflow\Actions\ParseGitBranches;
 use Grosv\LaravelGitWorkflow\Actions\ParseGitHubIssues;
 use Illuminate\Console\Command;
@@ -18,19 +20,26 @@ class StartDay extends Command
     protected $description = '';
     protected $help = '';
 
-    public function __construct()
+    /** @var ParseGitHubIssues  */
+    private $issues;
+
+    /** @var ParseGitBranches  */
+    private $branches;
+
+    /** @var GitCommand  */
+    private $git;
+
+    public function __construct(ParseGitHubIssues $issues, ParseGitBranches $branches, GitCommand $git)
     {
         parent::__construct();
+        $this->issues = $issues;
+        $this->branches = $branches;
+        $this->git = $git;
     }
 
-    public function handle(ParseGitHubIssues $issues, ParseGitBranches $branches)
+    public function handle()
     {
-        $process = new Process(['nosuchcommandexistsiamsure']);
-        $process->run();
 
-        if (!$process->isSuccessful()) {
-            $this->info('✔️ The Symfony process runner seems to be working');
-        }
         $process = new Process(['gh', '--help']);
         $process->run();
 
@@ -38,31 +47,18 @@ class StartDay extends Command
             $this->error('✖️ You must install the GitHub CLI. See https://cli.github.com');
             exit(1);
         }
+        $this->info('✔️ The Symfony process runner seems to be working');
 
         $this->info('✔️ GitHub CLI appears to be installed');
 
-        $process = new Process(['git', 'checkout', 'master']);
-        $process->run();
-
-        if (!$process->isSuccessful()) {
-            $this->error('✖️ Failed to check out the master branch.');
-        }
+        $this->git->execute('git checkout master');
 
         $this->info('✔️ Checked out master');
-
-        $process = new Process(['git', 'pull', '--rebase']);
-        $process->run();
-
-        if (!$process->isSuccessful()) {
-            $this->error('✖️ Failed to check out the master branch.');
-        }
+        $this->git->execute('git pull --rebase');
 
         $this->info('✔️ Master is up to date');
 
-        $process = new Process(['gh', 'issue', 'list']);
-        $process->run();
-
-        $open = $issues->execute($process->getOutput());
+        $open = $this->issues->execute($this->git->execute('gh issue list')->getOutput());
 
         if (empty($open)) {
             $this->info('✔️ There are no open issues at this time');
@@ -76,11 +72,6 @@ class StartDay extends Command
         if ($issue !== 0 && $issue !== 'None Right Now') {
             Artisan::call('issue:start ' . $issue);
         }
-
-
-
-
-
 
     }
 }

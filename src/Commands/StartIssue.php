@@ -4,6 +4,8 @@
 namespace Grosv\LaravelGitWorkflow\Commands;
 
 
+use Grosv\LaravelGitWorkflow\Actions\GitCommand;
+use Grosv\LaravelGitWorkflow\Actions\ParseGitBranches;
 use Grosv\LaravelGitWorkflow\Actions\ParseGitHubIssues;
 use Grosv\LaravelGitWorkflow\Actions\SetBranchForIssue;
 use Illuminate\Console\Command;

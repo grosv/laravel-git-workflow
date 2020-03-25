@@ -11,29 +11,35 @@ use Symfony\Component\Process\Process;
 class SetBranchForIssue
 {
 
-    public array $branches;
+    private $branches;
+    private $git;
+    private ?string $branch;
 
-    public function __construct()
+    public function __construct(GitCommand $git, ParseGitBranches $branches)
     {
-        $this->branches = [];
+        $this->branches = $branches;
+        $this->git = $git;
+        $this->branch = null;
     }
 
-    public function execute(string $issue, GitCommand $git, ParseGitBranches $branches): void
+    public function execute(string $issue): void
     {
 
-        $this->branches = $branches->execute($git->execute('git branch -a')->getOutput());
+        $this->branch = config('laravel-git-workflow.branch_prefix') . $issue;
 
-        if (in_array($issue, $this->branches)) {
-            $git->execute('git checkout ' . $issue);
-            $git->execute('git fetch');
-            $git->execute('git rebase origin/master');
+        $branches = $this->branches->execute($this->git->execute('git branch -a')->getOutput());
+
+        if (in_array($issue, $branches)) {
+            $this->git->execute('git checkout ' . $this->branch);
+            $this->git->execute('git fetch');
+            $this->git->execute('git rebase origin/master');
 
             return;
         }
 
-        $git->execute('git checkout -b ' . $issue);
-        $git->execute('git commit --allow-empty -m "WIP"');
-        $git->execute('git push -u origin ' . $issue);
-        $git->execute('gh pr create -t ' . Str::title(str_replace('_', ' ', $issue)) . ' -b "WIP" -d');
+        $this->git->execute('git checkout -b ' . $this->branch);
+        $this->git->execute('git commit --allow-empty -m "WIP"');
+        $this->git->execute('git push -u origin ' . $this->branch);
+        $this->git->execute('gh pr create -t ' . Str::title(str_replace('_', ' ', $issue)) . ' -b "WIP" -d');
     }
 }

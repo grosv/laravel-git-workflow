@@ -8,14 +8,21 @@ use Illuminate\Support\Str;
 
 class PruneTestBranches
 {
+    /** @var GitCommand  */
+    private $git;
+
+    public function __construct(GitCommand $git)
+    {
+        $this->git = $git;
+    }
     public function execute() :void
     {
-        $branches = explode("\n", (new GitCommand())->execute('git branch -a')->getOutput());
+        $branches = explode("\n", $this->git->execute('git branch -a')->getOutput());
 
         foreach ($branches as $branch) {
             if (Str::startsWith(trim($branch), 'lgw_')) {
-                (new GitCommand())->execute('git branch -D ' .$branch);
-                (new GitCommand())->execute('git push origin --delete remotes/origin/' . $branch);
+                $this->git->execute('git branch -D ' .$branch);
+                $this->git->execute('git push origin --delete remotes/origin/' . $branch);
             }
         }
     }
