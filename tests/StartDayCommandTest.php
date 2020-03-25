@@ -10,6 +10,7 @@ class StartDayCommandTest extends TestCase
 {
     public function setUp(): void
     {
+        parent::setUp();
         $this->mock(GitCommand::class, function ($mock) {
             $mock->shouldReceive('execute')
                 ->andReturn(new GitCommand(''));
