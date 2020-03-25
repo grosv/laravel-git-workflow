@@ -13,9 +13,9 @@ class GitCommand
     public $process;
     public string $output;
 
-    public function __construct()
+    public function __construct(string $output = '')
     {
-        $this->output = '';
+        $this->output = $output;
     }
 
     public function execute(string $command): self
