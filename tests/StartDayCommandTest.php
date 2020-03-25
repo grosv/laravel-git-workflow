@@ -50,7 +50,7 @@ class StartDayCommandTest extends TestCase
         });
 
         $this->artisan('day:start')
-            ->expectsQuestion('Which issue would you like to work on?', '0')
+            ->expectsQuestion('Which issue would you like to work on?', 'None Right Now')
             ->assertExitCode(0);
     }
 }
