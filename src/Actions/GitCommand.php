@@ -11,6 +11,12 @@ class GitCommand
 {
     /** @var Process */
     public $process;
+    public string $output;
+
+    public function __construct()
+    {
+        $this->output = '';
+    }
 
     public function execute(string $command): self
     {
@@ -25,6 +31,6 @@ class GitCommand
 
     public function getOutput()
     {
-        return $this->process->getOutput();
+        return is_object($this->process) ? $this->process->getOutput() : $this->output;
     }
 }
