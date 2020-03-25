@@ -2,6 +2,7 @@
 
 namespace Tests;
 
+use Grosv\LaravelGitWorkflow\Actions\GitCommand;
 use Grosv\LaravelGitWorkflow\LaravelGitWorkflowProvider;
 use Orchestra\Testbench\TestCase as BaseTestCase;
 
@@ -16,6 +17,7 @@ abstract class TestCase extends BaseTestCase
     public function tearDown(): void
     {
         parent::tearDown();
+        (new GitCommand())->execute('git checkout master');
     }
 
     protected function getPackageProviders($app)
