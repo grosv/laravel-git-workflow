@@ -14,7 +14,7 @@ class StartDayCommandTest extends TestCase
     {
         $this->createStub(GitCommand::class)
             ->method('execute')
-            ->willReturn( new GitCommand() );
+            ->willReturn(new GitCommand());
         $this->mock(ParseGitHubIssues::class, function ($mock) {
             $mock->shouldReceive('execute')->once()
                 ->andReturn([]);
@@ -29,6 +29,9 @@ class StartDayCommandTest extends TestCase
     /** @test */
     public function it_handles_no_issues()
     {
+        $this->createStub(GitCommand::class)
+            ->method('execute')
+            ->willReturn(new GitCommand());
 
         $this->mock(ParseGitHubIssues::class, function ($mock) {
             $mock->shouldReceive('execute')->once()
@@ -43,6 +46,9 @@ class StartDayCommandTest extends TestCase
     /** @test */
     public function it_handles_open_issues()
     {
+        $this->createStub(GitCommand::class)
+            ->method('execute')
+            ->willReturn(new GitCommand());
 
         $this->mock(ParseGitHubIssues::class, function ($mock) {
             $mock->shouldReceive('execute')
