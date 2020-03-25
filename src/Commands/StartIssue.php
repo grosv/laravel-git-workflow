@@ -15,10 +15,26 @@ class StartIssue extends Command
 {
     protected $signature = 'issue:start {issue?}';
     public ?string $issue = null;
-    public array $branch = [];
+
+    /** @var SetBranchForIssue */
+    private $branch;
+
+    /** @var ParseGitHubIssues  */
+    private $issues;
+
+    /** @var GitCommand  */
+    private $git;
+
+    public function __construct(SetBranchForIssue $branch, ParseGitHubIssues $issues, GitCommand $git)
+    {
+        parent::__construct();
+        $this->branch = $branch;
+        $this->issues = $issues;
+        $this->git = $git;
+    }
 
 
-    public function handle(SetBranchForIssue $branch)
+    public function handle()
 
     {
         $this->issue = $this->argument('issue');
@@ -27,9 +43,7 @@ class StartIssue extends Command
         }
 
         if (!$this->issue) {
-            $process = new Process(['gh', 'issue', 'list']);
-            $process->run();
-            $open = (new ParseGitHubIssues())->execute($process->getOutput());
+            $open = $this->issues->execute($this->git->execute('gh issue list')->getOutput());
 
             if (empty($open)) {
                 $this->info('There are currently no open issues.');
@@ -39,7 +53,7 @@ class StartIssue extends Command
             $this->issue = $this->choice('Which issue would you like to work on?', $open, 0);
         }
 
-        $branch->execute($this->issue);
+        $this->branch->execute($this->issue);
 
 
         $this->info('You should be on branch ' . $this->issue . ' (verify with `git status`)');
