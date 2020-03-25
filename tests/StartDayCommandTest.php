@@ -3,6 +3,7 @@
 
 namespace Tests;
 
+use Grosv\LaravelGitWorkflow\Actions\GitCommand;
 use Grosv\LaravelGitWorkflow\Actions\ParseGitHubIssues;
 
 class StartDayCommandTest extends TestCase
@@ -11,6 +12,9 @@ class StartDayCommandTest extends TestCase
     /** @test */
     public function it_checks_for_requirements()
     {
+        $this->createStub(GitCommand::class)
+            ->method('execute')
+            ->willReturn( new GitCommand() );
         $this->mock(ParseGitHubIssues::class, function ($mock) {
             $mock->shouldReceive('execute')->once()
                 ->andReturn([]);
