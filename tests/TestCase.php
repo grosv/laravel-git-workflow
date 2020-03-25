@@ -11,13 +11,16 @@ abstract class TestCase extends BaseTestCase
     public function setUp(): void
     {
         parent::setUp();
+        $this->mock(GitCommand::class, function ($mock) {
+            $mock->shouldReceive('execute')
+                ->andReturn(new GitCommand(''));
+        });
 
     }
 
     public function tearDown(): void
     {
         parent::tearDown();
-        (new GitCommand())->execute('git checkout master');
     }
 
     protected function getPackageProviders($app)
