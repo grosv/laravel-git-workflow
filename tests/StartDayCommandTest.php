@@ -41,7 +41,7 @@ class StartDayCommandTest extends TestCase
     {
 
         $this->mock(ParseGitHubIssues::class, function ($mock) {
-            $mock->shouldReceive('execute')
+            $mock->shouldReceive('execute')->once()
                 ->andReturn([['number' => '1', 'title' => 'Something Is Broken']]);
         });
 

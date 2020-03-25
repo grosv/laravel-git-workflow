@@ -56,7 +56,8 @@ class StartDay extends Command
 
         $this->info('✔️ Master is up to date');
 
-        $open = $this->issues->execute($this->git->execute('gh issue list')->getOutput());
+        $issues = $this->git->execute('gh issue list')->getOutput();
+        $open = $this->issues->execute($issues);
 
         if (empty($open)) {
             $this->info('✔️ There are no open issues at this time');
