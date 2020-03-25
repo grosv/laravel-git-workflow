@@ -36,7 +36,6 @@ class StartDayCommandTest extends TestCase
             ->assertExitCode(0);
     }
 
-    /** @test */
     public function it_handles_open_issues()
     {
 
