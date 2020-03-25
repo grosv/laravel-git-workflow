@@ -8,15 +8,17 @@ use Grosv\LaravelGitWorkflow\Actions\ParseGitHubIssues;
 
 class StartDayCommandTest extends TestCase
 {
+    public function setUp(): void
+    {
+        $this->mock(GitCommand::class, function ($mock) {
+            $mock->shouldReceive('execute')
+                ->andReturn(new GitCommand(''));
+        });
+    }
 
     /** @test */
     public function it_checks_for_requirements()
     {
-        $this->mock(GitCommand::class, function ($mock) {
-            $mock->shouldReceive('execute')
-                ->andReturn(new GitCommand());
-        });
-
         $this->mock(ParseGitHubIssues::class, function ($mock) {
             $mock->shouldReceive('execute')->once()
                 ->andReturn([]);
