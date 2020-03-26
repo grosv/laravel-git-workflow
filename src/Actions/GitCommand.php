@@ -1,8 +1,6 @@
 <?php
 
-
 namespace Grosv\LaravelGitWorkflow\Actions;
-
 
 use Symfony\Component\Process\Exception\ProcessFailedException;
 use Symfony\Component\Process\Process;
@@ -33,6 +31,7 @@ class GitCommand
         if (!$this->process->isSuccessful()) {
             throw new ProcessFailedException($this->process);
         }
+
         return $this;
     }
 

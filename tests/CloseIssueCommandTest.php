@@ -1,8 +1,6 @@
 <?php
 
-
 namespace Tests;
-
 
 use Grosv\LaravelGitWorkflow\Actions\GetCurrentBranchName;
 
@@ -16,7 +14,7 @@ class CloseIssueCommandTest extends TestCase
     /** @test */
     public function is_creates_a_commit_requesting_a_code_review()
     {
-        $this->mock(GetCurrentBranchName::class, function($mock) {
+        $this->mock(GetCurrentBranchName::class, function ($mock) {
             $mock->shouldReceive('execute')
                 ->andReturn('1_feature_branch');
         });

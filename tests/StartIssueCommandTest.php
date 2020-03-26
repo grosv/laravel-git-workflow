@@ -1,8 +1,6 @@
 <?php
 
-
 namespace Tests;
-
 
 use Grosv\LaravelGitWorkflow\Actions\SetBranchForIssue;
 
@@ -23,8 +21,6 @@ class StartIssueCommandTest extends TestCase
             ->expectsOutput('You should be on branch 1_this_is_an_issue (verify with `git status`)')
             ->expectsOutput('Use `php artisan issue:update` to update your work throughout the day and `php artisan day:end` at the end of the day.')
             ->assertExitCode(0);
-
-
     }
 
     /** @test */

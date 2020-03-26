@@ -1,18 +1,14 @@
 <?php
 
-
 namespace Grosv\LaravelGitWorkflow\Commands;
-
 
 use Grosv\LaravelGitWorkflow\Actions\GetCurrentBranchName;
 use Grosv\LaravelGitWorkflow\Actions\GitCommand;
 use Grosv\LaravelGitWorkflow\Actions\RunTests;
 use Illuminate\Console\Command;
-use Illuminate\Support\Facades\Artisan;
 
 class EndDay extends Command
 {
-
     protected $signature = 'day:end';
 
     private GitCommand $git;
@@ -23,8 +19,7 @@ class EndDay extends Command
         GitCommand $git,
         GetCurrentBranchName $branch,
         RunTests $tests
-    )
-    {
+    ) {
         parent::__construct();
         $this->branch = $branch->execute();
         $this->tests = $tests;
@@ -33,7 +28,6 @@ class EndDay extends Command
 
     public function handle()
     {
-
         if ($this->tests->execute() == 1) {
             if ($this->confirm('Your tests are not currently passing. Are you sure you want to quit?')) {
                 return 1;
@@ -43,11 +37,10 @@ class EndDay extends Command
         $hours = $this->ask('How many hours of work did you do during this session?');
 
         $this->git->execute('git add .');
-        $this->git->execute('git commit -m "End+of+Day+-+' . $hours . '+Hours" --allow-empty');
+        $this->git->execute('git commit -m "End+of+Day+-+'.$hours.'+Hours" --allow-empty');
         $this->git->execute('git pull --rebase');
         $this->git->execute('git push');
+
         return 0;
     }
-
-
 }

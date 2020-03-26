@@ -1,13 +1,11 @@
 <?php
 
-
 namespace Grosv\LaravelGitWorkflow;
-
 
 use Grosv\LaravelGitWorkflow\Commands\CloseIssue;
 use Grosv\LaravelGitWorkflow\Commands\EndDay;
-use Grosv\LaravelGitWorkflow\Commands\StartIssue;
 use Grosv\LaravelGitWorkflow\Commands\StartDay;
+use Grosv\LaravelGitWorkflow\Commands\StartIssue;
 use Grosv\LaravelGitWorkflow\Commands\UpdateIssue;
 use Illuminate\Support\ServiceProvider;
 

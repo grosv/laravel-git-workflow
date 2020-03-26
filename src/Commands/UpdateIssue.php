@@ -1,14 +1,10 @@
 <?php
 
-
 namespace Grosv\LaravelGitWorkflow\Commands;
-
 
 use Grosv\LaravelGitWorkflow\Actions\GetCurrentBranchName;
 use Grosv\LaravelGitWorkflow\Actions\GitCommand;
 use Illuminate\Console\Command;
-use Illuminate\Support\Facades\Artisan;
-use Symfony\Component\Process\Process;
 
 class UpdateIssue extends Command
 {
@@ -28,10 +24,9 @@ class UpdateIssue extends Command
     {
         $this->message = $this->argument('message');
 
-
-        if ($this->branch === 'master')
-        {
+        if ($this->branch === 'master') {
             $this->error('You cannot commit directly to the master branch. Run `php artisan issue:start` to get to your feature branch.');
+
             return 1;
         }
 
@@ -40,12 +35,12 @@ class UpdateIssue extends Command
         }
 
         $this->git->execute('git add .');
-        $this->git->execute('git commit -m "' . $this->message . '"');
+        $this->git->execute('git commit -m "'.$this->message.'"');
         $this->git->execute('git pull --rebase');
         $this->git->execute('git push');
 
         if ($this->confirm('Are you ready to close this issue and request a review of the pull request?')) {
-            $this->call('issue:close ' . $this->branch);
+            $this->call('issue:close '.$this->branch);
         }
 
         $this->info('Your commit has been added to the pull request.');

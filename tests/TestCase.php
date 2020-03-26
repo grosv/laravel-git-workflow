@@ -18,10 +18,9 @@ abstract class TestCase extends BaseTestCase
                 ->andReturn(new GitCommand(''));
         });
 
-        Config::set('laravel-git-workflow.env', __DIR__ . '/.env');
+        Config::set('laravel-git-workflow.env', __DIR__.'/.env');
 
         $this->resetDotEnv();
-
     }
 
     public function tearDown(): void
@@ -31,7 +30,7 @@ abstract class TestCase extends BaseTestCase
 
     private function resetDotEnv()
     {
-        $env = File::get(__DIR__ .'/.env.before');
+        $env = File::get(__DIR__.'/.env.before');
         File::put(__DIR__.'/.env', $env);
     }
 
