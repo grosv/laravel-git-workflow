@@ -8,7 +8,7 @@ An opinionated GitHub workflow I use to manage my team and any freelancers I wor
 
 ### Installation
 ```shell script
-composer require grosv/laravel-git-workflow
+composer require grosv/laravel-git-workflow --dev
 ```
 
 This adds a handful of commands to your Laravel app.
