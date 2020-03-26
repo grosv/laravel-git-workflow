@@ -53,7 +53,7 @@ class StartIssue extends Command
             $this->issue = $this->choice('Which issue would you like to work on?', $open, 0);
         }
 
-        $this->branch->execute($this->issue);
+        $this->info($this->branch->execute($this->issue));
 
 
         $this->info('You should be on branch ' . $this->issue . ' (verify with `git status`)');
