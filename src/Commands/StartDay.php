@@ -1,32 +1,28 @@
 <?php
 
-
 namespace Grosv\LaravelGitWorkflow\Commands;
-
 
 use Grosv\LaravelGitWorkflow\Actions\GitCommand;
 use Grosv\LaravelGitWorkflow\Actions\ParseGitBranches;
 use Grosv\LaravelGitWorkflow\Actions\ParseGitHubIssues;
 use Illuminate\Console\Command;
-use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\File;
 use Symfony\Component\Process\Process;
 
 class StartDay extends Command
 {
-
     protected $signature = 'day:start';
     protected $description = '';
     protected $help = '';
 
-    /** @var ParseGitHubIssues  */
+    /** @var ParseGitHubIssues */
     private $issues;
 
-    /** @var ParseGitBranches  */
+    /** @var ParseGitBranches */
     private $branches;
 
-    /** @var GitCommand  */
+    /** @var GitCommand */
     private $git;
 
     public function __construct(ParseGitHubIssues $issues, ParseGitBranches $branches, GitCommand $git)
@@ -39,10 +35,9 @@ class StartDay extends Command
 
     public function handle()
     {
-
         if (config('laravel-git-workflow.github_user') === '') {
             $gh = $this->ask('What is your GitHub username? (https://github.com/your_username)');
-            File::append(config('laravel-git-workflow.env'), "\nLGW_GITHUB_USER=" . $gh);
+            File::append(config('laravel-git-workflow.env'), "\nLGW_GITHUB_USER=".$gh);
             Config::set('laravel-git-workflow.github_user', $gh);
         }
 
@@ -68,6 +63,7 @@ class StartDay extends Command
 
         if (empty($open)) {
             $this->info('✔️ There are no open issues at this time');
+
             return;
         }
 

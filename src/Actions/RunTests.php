@@ -1,8 +1,6 @@
 <?php
 
-
 namespace Grosv\LaravelGitWorkflow\Actions;
-
 
 use Symfony\Component\Process\Process;
 
@@ -12,7 +10,7 @@ class RunTests
     {
         $process = new Process(['phpunit']);
         $process->run();
+
         return $process->getExitCode();
     }
-
 }

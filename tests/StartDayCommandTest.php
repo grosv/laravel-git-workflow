@@ -1,9 +1,7 @@
 <?php
 
-
 namespace Tests;
 
-use Grosv\LaravelGitWorkflow\Actions\GitCommand;
 use Grosv\LaravelGitWorkflow\Actions\ParseGitHubIssues;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\File;
@@ -13,14 +11,14 @@ class StartDayCommandTest extends TestCase
     public function setUp(): void
     {
         parent::setUp();
-
     }
+
     /** @test */
     public function it_prompts_for_github_username_if_not_in_env()
     {
-        $before = File::get(__DIR__ . '/.env.before');
+        $before = File::get(__DIR__.'/.env.before');
         $after = File::get(__DIR__.'/.env.after');
-        $env = File::get(__DIR__ . '/.env');
+        $env = File::get(__DIR__.'/.env');
 
         $this->assertEquals($before, $env);
 
@@ -28,7 +26,7 @@ class StartDayCommandTest extends TestCase
             ->expectsQuestion('What is your GitHub username? (https://github.com/your_username)', 'edgrosvenor')
             ->assertExitCode(0);
 
-        $env = File::get(__DIR__ . '/.env');
+        $env = File::get(__DIR__.'/.env');
         $this->assertEquals($after, $env);
     }
 

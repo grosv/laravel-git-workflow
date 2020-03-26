@@ -1,8 +1,6 @@
 <?php
 
-
 namespace Tests;
-
 
 use Grosv\LaravelGitWorkflow\Actions\RunTests;
 
@@ -16,7 +14,7 @@ class EndDayCommandTest extends TestCase
     /** @test */
     public function it_prompts_for_confirmation_if_tests_fail()
     {
-        $this->mock(RunTests::class, function($mock) {
+        $this->mock(RunTests::class, function ($mock) {
             $mock->shouldReceive('execute')
                 ->andReturn(1);
         });
@@ -28,7 +26,7 @@ class EndDayCommandTest extends TestCase
     /** @test */
     public function it_prompts_for_the_number_of_hours()
     {
-        $this->mock(RunTests::class, function($mock) {
+        $this->mock(RunTests::class, function ($mock) {
             $mock->shouldReceive('execute')
                 ->andReturn(0);
         });
@@ -37,5 +35,4 @@ class EndDayCommandTest extends TestCase
             ->expectsQuestion('How many hours of work did you do during this session?', 4)
             ->assertExitCode(0);
     }
-
 }

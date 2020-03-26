@@ -1,8 +1,6 @@
 <?php
 
-
 namespace Grosv\LaravelGitWorkflow\Actions;
-
 
 class ParseGitBranches
 {
@@ -13,12 +11,12 @@ class ParseGitBranches
         $this->branches = [];
     }
 
-    public function execute(String $string)
+    public function execute(string $string)
     {
         foreach (explode("\n", $string) as $branch) {
             array_push($this->branches, trim(str_replace('*', '', $branch)));
         }
+
         return $this->branches;
     }
-
 }

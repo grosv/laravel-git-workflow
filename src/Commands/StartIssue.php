@@ -1,15 +1,11 @@
 <?php
 
-
 namespace Grosv\LaravelGitWorkflow\Commands;
 
-
 use Grosv\LaravelGitWorkflow\Actions\GitCommand;
-use Grosv\LaravelGitWorkflow\Actions\ParseGitBranches;
 use Grosv\LaravelGitWorkflow\Actions\ParseGitHubIssues;
 use Grosv\LaravelGitWorkflow\Actions\SetBranchForIssue;
 use Illuminate\Console\Command;
-use Symfony\Component\Process\Process;
 
 class StartIssue extends Command
 {
@@ -19,10 +15,10 @@ class StartIssue extends Command
     /** @var SetBranchForIssue */
     private $branch;
 
-    /** @var ParseGitHubIssues  */
+    /** @var ParseGitHubIssues */
     private $issues;
 
-    /** @var GitCommand  */
+    /** @var GitCommand */
     private $git;
 
     public function __construct(SetBranchForIssue $branch, ParseGitHubIssues $issues, GitCommand $git)
@@ -33,9 +29,7 @@ class StartIssue extends Command
         $this->git = $git;
     }
 
-
     public function handle()
-
     {
         $this->issue = $this->argument('issue');
         if (!preg_match('/_/', $this->issue)) {
@@ -47,6 +41,7 @@ class StartIssue extends Command
 
             if (empty($open)) {
                 $this->info('There are currently no open issues.');
+
                 return;
             }
 
@@ -57,9 +52,7 @@ class StartIssue extends Command
 
         $this->git->execute('git pull --rebase');
 
-
-        $this->info('You should be on branch ' . $this->issue . ' (verify with `git status`)');
+        $this->info('You should be on branch '.$this->issue.' (verify with `git status`)');
         $this->info('Use `php artisan issue:update` to update your work throughout the day and `php artisan day:end` at the end of the day.');
     }
-
 }
