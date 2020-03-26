@@ -18,7 +18,6 @@ class UpdateIssueCommandTest extends TestCase
     {
         $this->mock(GetCurrentBranchName::class, function($mock) {
             $mock->shouldReceive('execute')
-                ->once()
                 ->andReturn('master');
         });
 
@@ -34,7 +33,6 @@ class UpdateIssueCommandTest extends TestCase
     {
         $this->mock(GetCurrentBranchName::class, function($mock) {
             $mock->shouldReceive('execute')
-                ->once()
                 ->andReturn('1_feature_branch');
         });
 

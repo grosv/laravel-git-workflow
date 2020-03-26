@@ -40,11 +40,12 @@ class UpdateIssue extends Command
         }
 
         $this->git->execute('git add .');
-        $this->git->execute('git commit ' . $this->message);
+        $this->git->execute('git commit -m "' . $this->message . '"');
+        $this->git->execute('git pull --rebase');
         $this->git->execute('git push');
 
         if ($this->confirm('Are you ready to close this issue and request a review of the pull request?')) {
-            Artisan::call('issue:close ' . $this->branch);
+            $this->call('issue:close ' . $this->branch);
         }
 
         $this->info('Your commit has been added to the pull request.');

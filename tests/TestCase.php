@@ -4,6 +4,8 @@ namespace Tests;
 
 use Grosv\LaravelGitWorkflow\Actions\GitCommand;
 use Grosv\LaravelGitWorkflow\LaravelGitWorkflowProvider;
+use Illuminate\Support\Facades\Config;
+use Illuminate\Support\Facades\File;
 use Orchestra\Testbench\TestCase as BaseTestCase;
 
 abstract class TestCase extends BaseTestCase
@@ -16,11 +18,21 @@ abstract class TestCase extends BaseTestCase
                 ->andReturn(new GitCommand(''));
         });
 
+        Config::set('laravel-git-workflow.env', __DIR__ . '/.env');
+
+        $this->resetDotEnv();
+
     }
 
     public function tearDown(): void
     {
         parent::tearDown();
+    }
+
+    private function resetDotEnv()
+    {
+        $env = File::get(__DIR__ .'/.env.before');
+        File::put(__DIR__.'/.env', $env);
     }
 
     protected function getPackageProviders($app)

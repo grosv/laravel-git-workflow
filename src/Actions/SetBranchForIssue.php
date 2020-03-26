@@ -38,9 +38,9 @@ class SetBranchForIssue
         }
 
         $this->git->execute('git checkout -b ' . $this->branch);
-        $this->git->execute('git commit --allow-empty -m "WIP"');
+        $this->git->execute('git commit --allow-empty -m "' . config('laravel-git-workflow.wip') . '"');
         $this->git->execute('git push -u origin ' . $this->branch);
-        $this->git->execute('gh pr create -t ' . Str::title(str_replace('_', ' ', $issue)) . ' -b "WIP" -d');
+        $this->git->execute('gh pr create -t ' . Str::title(str_replace('_', ' ', $this->branch)) . ' -b "' . config('laravel-git-workflow.wip') . '" -d');
         return 'Created Branches and Draft PR for ' . $issue;
     }
 }

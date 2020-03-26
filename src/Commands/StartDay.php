@@ -9,6 +9,8 @@ use Grosv\LaravelGitWorkflow\Actions\ParseGitBranches;
 use Grosv\LaravelGitWorkflow\Actions\ParseGitHubIssues;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Artisan;
+use Illuminate\Support\Facades\Config;
+use Illuminate\Support\Facades\File;
 use Symfony\Component\Process\Process;
 
 class StartDay extends Command
@@ -38,6 +40,12 @@ class StartDay extends Command
     public function handle()
     {
 
+        if (config('laravel-git-workflow.github_user') === '') {
+            $gh = $this->ask('What is your GitHub username? (https://github.com/your_username)');
+            File::append(config('laravel-git-workflow.env'), "\nLGW_GITHUB_USER=" . $gh);
+            Config::set('laravel-git-workflow.github_user', $gh);
+        }
+
         $process = new Process(['gh', '--help']);
         $process->run();
 
@@ -45,7 +53,6 @@ class StartDay extends Command
             $this->error('✖️ You must install the GitHub CLI. See https://cli.github.com');
             exit(1);
         }
-        $this->info('✔️ The Symfony process runner seems to be working');
 
         $this->info('✔️ GitHub CLI appears to be installed');
 
@@ -69,8 +76,7 @@ class StartDay extends Command
         $issue = $this->choice('Which issue would you like to work on?', $open, 0);
 
         if ($issue != 0 && $issue !== 'None Right Now') {
-            Artisan::call('issue:start ' . $issue);
+            $this->call('issue:start', ['issue' => $issue]);
         }
-
     }
 }

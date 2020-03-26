@@ -55,6 +55,8 @@ class StartIssue extends Command
 
         $this->info($this->branch->execute($this->issue));
 
+        $this->git->execute('git pull --rebase');
+
 
         $this->info('You should be on branch ' . $this->issue . ' (verify with `git status`)');
         $this->info('Use `php artisan issue:update` to update your work throughout the day and `php artisan day:end` at the end of the day.');

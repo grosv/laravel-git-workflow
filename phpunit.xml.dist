@@ -23,5 +23,7 @@
     <php>
         <env name="APP_ENV" value="testing"/>
         <env name="APP_DEBUG" value="true"/>
+        <env name="LGW_BRANCH_PREFIX" value="lgw_"/>
+        <env name="LGW_PROJECT_OWNER" value="edgrosvenor" />
     </php>
 </phpunit>

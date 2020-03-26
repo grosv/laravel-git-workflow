@@ -5,6 +5,7 @@ namespace Grosv\LaravelGitWorkflow;
 
 
 use Grosv\LaravelGitWorkflow\Commands\CloseIssue;
+use Grosv\LaravelGitWorkflow\Commands\EndDay;
 use Grosv\LaravelGitWorkflow\Commands\StartIssue;
 use Grosv\LaravelGitWorkflow\Commands\StartDay;
 use Grosv\LaravelGitWorkflow\Commands\UpdateIssue;
@@ -17,6 +18,7 @@ class LaravelGitWorkflowProvider extends ServiceProvider
         if ($this->app->runningInConsole()) {
             $this->commands([
                 CloseIssue::class,
+                EndDay::class,
                 StartDay::class,
                 StartIssue::class,
                 UpdateIssue::class,
@@ -26,6 +28,6 @@ class LaravelGitWorkflowProvider extends ServiceProvider
 
     public function register(): void
     {
-        $this->mergeConfigFrom(__DIR__.'/../config/config.php', 'laravel-package-template');
+        $this->mergeConfigFrom(__DIR__.'/../config/config.php', 'laravel-git-workflow');
     }
 }

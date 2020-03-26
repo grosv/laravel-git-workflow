@@ -1,18 +1,26 @@
-# Laravel Package Repository Template
-A bare bones respository template for developing Laravel packages.
-### How To Use
-Use the green "Use this template" button above to create a new repository based on this repo. You'll get a fresh repository reflecting the code as it is right now in this repo, but with a fresh commit history.
+# Laravel Git Workflow
 
-After you've done that, you have some editing / refactoring to do. Depending on your IDE the instructions and difficulty of this will vary a bit. But however you accomplish them, here are your steps:
+[![Latest Version on Packagist](https://img.shields.io/packagist/v/grosv/laravel-git-workflow.svg?style=flat-square)](https://packagist.org/packages/grosv/laravel-git-workflow)
+[![StyleCI](https://github.styleci.io/repos/244386505/shield?branch=master)](https://github.styleci.io/repos/244386505)
+![Build Status](https://app.chipperci.com/projects/65d88e3d-ecf4-4ced-afd3-e5ba3593ce21/status/master)
 
-1. Edit composer.json to change the vendor/packagename line, the description, the author name, and the author email. Also update the autoload blocks to reflect your vendor namespace and package name.
+An opinionated GitHub workflow I use to manage my team and any freelancers I work with. All our projects use short lived feature branches off of master. We use draft pull requests and at least daily pushes so that I can track progress and identify "stuck" developers quickly.
 
-2. Rename LaravelPackageTemplateProvider.php to be {YourPackageName}Provider.php and change the class name inside to match. Change the namespace to match your vendor namespace.
+### Installation
+```shell script
+composer require grosv/laravel-git-workflow
+```
 
-3. Go to tests/TestCase and change the name of the loaded service provider to match your package name.
+This adds a handful of commands to your Laravel app.
 
-4. Run the tests. There should be one test and it should pass. If that happens, you know you at least haven't broken the test setup and should be ready to start building something great.
+### Commands
 
-### Acknowledgements
+`php artisan day:start` Verifies that we have the developer's GitHub username, checks out master and ensures it's up to date. Prompts developer to choose which issue to work on.
 
-I started off writing packages with the help of Marcel Pociot's excellent [Laravel Package Boilerplate](https://laravelpackageboilerplate.com/#/) and I purchased and used his course on package development. Without those two things I'd never have gotten to be nearly as proficient in package develpment as I am. If you are just starting out, I strongly recommend using those vs using this template or starting from scratch.
+`php artisan issue:start {issue}` Checks out the branch associated with the issue. Creates a remote branch and draft pull request if they don't exist.
+
+`php artisan commit` Ensures the developer is on a feature branch and then commits / pushes to it.
+
+`php artisan issue:close {issue}` (Not Ideal) Puts up an empty commit with the project owner tagged in the message requesting a review and prompts the developer to go to github.com to mark the PR ready for review. 
+
+`php artisan day:end` Asks the developer how many hours they put in during the day and commits whatever has not yet been committed to the PR.
