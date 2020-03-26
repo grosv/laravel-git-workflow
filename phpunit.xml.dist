@@ -8,8 +8,7 @@
          convertNoticesToExceptions="true"
          convertWarningsToExceptions="true"
          processIsolation="false"
-         stopOnFailure="true"
-         printerClass="NunoMaduro\Collision\Adapters\Phpunit\Printer">
+         stopOnFailure="true">
     <testsuites>
         <testsuite name="Test Suite">
             <directory>tests</directory>

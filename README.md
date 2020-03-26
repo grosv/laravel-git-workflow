@@ -1,8 +1,8 @@
 # Laravel Git Workflow
 
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/grosv/laravel-git-workflow.svg?style=flat-square)](https://packagist.org/packages/grosv/laravel-git-workflow)
-[![StyleCI](https://github.styleci.io/repos/244386505/shield?branch=master)](https://github.styleci.io/repos/244386505)
-![Build Status](https://app.chipperci.com/projects/65d88e3d-ecf4-4ced-afd3-e5ba3593ce21/status/master)
+[![StyleCI](https://github.styleci.io/repos/248610774/shield?branch=master)](https://github.styleci.io/repos/248610774)
+![Build Status](https://app.chipperci.com/projects/991579ec-e338-486f-8e93-9025167700ad/status/master)
 
 An opinionated GitHub workflow I use to manage my team and any freelancers I work with. All our projects use short lived feature branches off of master. We use draft pull requests and at least daily pushes so that I can track progress and identify "stuck" developers quickly.
 
