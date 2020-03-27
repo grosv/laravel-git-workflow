@@ -13,10 +13,12 @@ class StartDayCommandTest extends TestCase
         parent::setUp();
     }
 
-    /** @test */
+    /**
+     * @test
+     * @group local
+     */
     public function it_prompts_for_github_username_if_not_in_env()
     {
-        $this->markTestSkipped('Fails in CI for some reason');
         $before = File::get(__DIR__.'/.env.before');
         $after = File::get(__DIR__.'/.env.after');
         $env = File::get(__DIR__.'/.env');
@@ -31,7 +33,10 @@ class StartDayCommandTest extends TestCase
         $this->assertEquals($after, $env);
     }
 
-    /** @test */
+    /**
+     * @test
+     * @group local
+     */
     public function it_checks_for_requirements()
     {
         Config::set('laravel-git-workflow.github_user', 'edgrosvenor');

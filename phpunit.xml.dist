@@ -15,6 +15,11 @@
             <directory>tests</directory>
         </testsuite>
     </testsuites>
+    <groups>
+        <exclude>
+            <group>local</group>
+        </exclude>
+    </groups>
     <filter>
         <whitelist>
             <directory suffix=".php">src/</directory>
