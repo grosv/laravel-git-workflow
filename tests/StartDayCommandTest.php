@@ -50,7 +50,10 @@ class StartDayCommandTest extends TestCase
             ->assertExitCode(0);
     }
 
-    /** @test */
+    /**
+     * @test
+     * @group local
+     */
     public function it_handles_no_issues()
     {
         Config::set('laravel-git-workflow.github_user', 'edgrosvenor');
@@ -64,7 +67,10 @@ class StartDayCommandTest extends TestCase
             ->assertExitCode(0);
     }
 
-    /** @test */
+    /**
+     * @test
+     * @group local
+     */
     public function it_handles_open_issues()
     {
         Config::set('laravel-git-workflow.github_user', 'edgrosvenor');
