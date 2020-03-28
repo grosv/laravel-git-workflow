@@ -30,8 +30,8 @@ class UpdateIssue extends Command
             return 1;
         }
 
-        if ($this->message) {
-            $this->message = $this->ask('In one sentence, what changes have you made since your last commit?');
+        if (strlen($this->message) < 1) {
+            $this->message = config('laravel-git-workflow.wip');
         }
 
         $this->git->execute('git add .');

@@ -33,7 +33,6 @@ class UpdateIssueCommandTest extends TestCase
         });
 
         $this->artisan('commit', ['message' => 'WIP'])
-            ->expectsQuestion('In one sentence, what changes have you made since your last commit?', 'WIP')
             ->expectsConfirmation('Are you ready to close this issue and request a review of the pull request?')
             ->expectsOutput('Your commit has been added to the pull request.')
             ->assertExitCode(0);
