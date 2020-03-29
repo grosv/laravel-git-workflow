@@ -30,7 +30,7 @@ class CloseIssue extends Command
         }
 
         $this->git->execute('git add .');
-        $this->git->execute('git commit -m "' . urlencode('Requesting a code review from '.$this->owner) . '" --allow-empty');
+        $this->git->execute('git commit -m "'.urlencode('Requesting a code review from '.$this->owner).'" --allow-empty');
         $this->git->execute('git push');
 
         $this->info('You have requested a code review of '.$this->branch.' by '.$this->owner.'.');
