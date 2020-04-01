@@ -40,7 +40,7 @@ class UpdateIssue extends Command
         $this->git->execute('git push');
 
         if ($this->confirm('Are you ready to close this issue and request a review of the pull request?')) {
-            $this->call('issue:close '.$this->branch);
+            $this->call('issue:close');
         }
 
         $this->info('Your commit has been added to the pull request.');
