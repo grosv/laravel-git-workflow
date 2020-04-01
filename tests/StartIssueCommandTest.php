@@ -19,7 +19,7 @@ class StartIssueCommandTest extends TestCase
         $this->artisan('issue:start', ['issue' => '1_this_is_an_issue'])
             ->expectsOutput('Created Branches and Draft PR for 1_this_is_an_issue')
             ->expectsOutput('You should be on branch 1_this_is_an_issue (verify with `git status`)')
-            ->expectsOutput('Use `php artisan issue:update` to update your work throughout the day and `php artisan day:end` at the end of the day.')
+            ->expectsOutput('Use `php artisan commit` to update your work throughout the day and `php artisan day:end` at the end of the day.')
             ->assertExitCode(0);
     }
 
@@ -37,7 +37,7 @@ class StartIssueCommandTest extends TestCase
         $this->artisan('issue:start', ['issue' => '1_this_is_an_issue'])
             ->expectsOutput('Checked Out Existing Branch 1_this_is_an_issue')
             ->expectsOutput('You should be on branch 1_this_is_an_issue (verify with `git status`)')
-            ->expectsOutput('Use `php artisan issue:update` to update your work throughout the day and `php artisan day:end` at the end of the day.')
+            ->expectsOutput('Use `php artisan commit` to update your work throughout the day and `php artisan day:end` at the end of the day.')
             ->assertExitCode(0);
     }
 }
