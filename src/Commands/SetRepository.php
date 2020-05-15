@@ -9,6 +9,7 @@ use Illuminate\Support\Str;
 
 class SetRepository extends Command
 {
+
     /**
      * The name and signature of the console command.
      *
@@ -18,7 +19,6 @@ class SetRepository extends Command
 
     public string $package;
     public string $repo;
-
 
 
     public function handle(): int
@@ -55,6 +55,8 @@ class SetRepository extends Command
         }
 
         File::put(config('laravel-git-workflow.composer_json'), json_encode($composer, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES));
+        unset($composer);
+
         return 0;
     }
 }
