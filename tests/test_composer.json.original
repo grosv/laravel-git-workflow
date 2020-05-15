@@ -44,6 +44,7 @@
             "url": "https://github.com/edgrosvenor/my-crazy-package",
             "type": "git"
         }
+
     ],
     "extra": {
         "laravel": {

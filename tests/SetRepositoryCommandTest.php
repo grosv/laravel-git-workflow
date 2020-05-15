@@ -35,6 +35,7 @@ class SetRepositoryCommandTest extends TestCase
     public function tearDown(): void
     {
         File::put(config('laravel-git-workflow.composer_json'), $this->composer);
+        File::put(config('laravel-git-workflow.composer_json'), $this->composer);
     }
 
     /** @test */
@@ -42,19 +43,19 @@ class SetRepositoryCommandTest extends TestCase
     {
         $composer = json_decode($this->composer, true);
 
-        $this->assertEquals(['type' => 'path', 'url' => '../../packages/edgrosvenor/my-crazy-package'], $composer['repositories'][1]);
+        $this->assertEquals(['type' => 'git', 'url' => 'https://github.com/edgrosvenor/my-crazy-package'], $composer['repositories'][2]);
 
         $this->artisan('repo my-crazy-package git');
 
         $updated = json_decode(File::get(config('laravel-git-workflow.composer_json')), true);
 
-        $this->assertEquals(['type' => 'git', 'url' => 'https://github.com/edgrosvenor/my-crazy-package'], $updated['repositories'][1]);
+        $this->assertEquals(['type' => 'git', 'url' => 'https://github.com/edgrosvenor/my-crazy-package'], $updated['repositories'][2]);
 
         $this->artisan('repo my-crazy-package path');
 
         $updated = json_decode(File::get(config('laravel-git-workflow.composer_json')), true);
 
-        $this->assertEquals(['type' => 'path', 'url' => '../../packages/edgrosvenor/my-crazy-package'], $updated['repositories'][1]);
+        $this->assertEquals(['type' => 'path', 'url' => '../../packages/edgrosvenor/my-crazy-package'], $updated['repositories'][2]);
 
         $this->artisan('repo my-crazy-package packagist');
 
@@ -66,13 +67,13 @@ class SetRepositoryCommandTest extends TestCase
 
         $updated = json_decode(File::get(config('laravel-git-workflow.composer_json')), true);
 
-        $this->assertEquals(['type' => 'path', 'url' => '../../packages/edgrosvenor/my-crazy-package'], $updated['repositories'][1]);
+        $this->assertEquals(['type' => 'path', 'url' => '../../packages/edgrosvenor/my-crazy-package'], $updated['repositories'][2]);
 
         $this->artisan('repo my-crazy-package git');
 
         $updated = json_decode(File::get(config('laravel-git-workflow.composer_json')), true);
 
-        $this->assertEquals(['type' => 'git', 'url' => 'https://github.com/edgrosvenor/my-crazy-package'], $updated['repositories'][1]);
+        $this->assertEquals(['type' => 'git', 'url' => 'https://github.com/edgrosvenor/my-crazy-package'], $updated['repositories'][2]);
     }
 
     /** @test */
