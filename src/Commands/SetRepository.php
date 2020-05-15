@@ -1,6 +1,5 @@
 <?php
 
-
 namespace Grosv\LaravelGitWorkflow\Commands;
 
 use Illuminate\Console\Command;
@@ -9,7 +8,6 @@ use Illuminate\Support\Str;
 
 class SetRepository extends Command
 {
-
     /**
      * The name and signature of the console command.
      *
@@ -20,7 +18,6 @@ class SetRepository extends Command
     public string $package;
     public string $repo;
 
-
     public function handle(): int
     {
         $this->package = $this->argument('package');
@@ -29,7 +26,7 @@ class SetRepository extends Command
         $packages = config('laravel-git-workflow.repositories') ?? [];
 
         if (!isset($packages[$this->package])) {
-            $this->error('You have not configured a package called ' . $this->package);
+            $this->error('You have not configured a package called '.$this->package);
         }
 
         $new = $packages[$this->package];

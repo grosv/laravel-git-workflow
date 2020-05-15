@@ -14,14 +14,14 @@ class UpdateIssueCommandTest extends TestCase
     {
         parent::setUp();
 
-        Config::set('laravel-git-workflow.composer_json', __DIR__ . '/test_composer.json');
+        Config::set('laravel-git-workflow.composer_json', __DIR__.'/test_composer.json');
         Config::set('laravel-git-workflow.repositories', [
             'my-happy-package' => [
-                'git' => 'https://github.com/edgrosvenor/my-happy-package',
+                'git'  => 'https://github.com/edgrosvenor/my-happy-package',
                 'path' => '../../packages/edgrosvenor/my-happy-package',
             ],
             'my-crazy-package' => [
-                'git' => 'https://github.com/edgrosvenor/my-crazy-package',
+                'git'  => 'https://github.com/edgrosvenor/my-crazy-package',
                 'path' => '../../packages/edgrosvenor/my-crazy-package',
             ],
             'my-sad-package' => [
@@ -30,7 +30,6 @@ class UpdateIssueCommandTest extends TestCase
         ]);
 
         $this->composer = File::get(config('laravel-git-workflow.composer_json'));
-
     }
 
     public function tearDown(): void
@@ -54,7 +53,6 @@ class UpdateIssueCommandTest extends TestCase
     /** @test */
     public function it_will_let_you_commit_to_a_feature_branch()
     {
-
         $this->mock(GetCurrentBranchName::class, function ($mock) {
             $mock->shouldReceive('execute')
                 ->andReturn('1_feature_branch');
