@@ -6,4 +6,6 @@ return [
     'github_user'   => env('LGW_GITHUB_USER', ''),
     'wip'           => env('LGW_WIP', 'WIP'),
     'env'           => base_path('.env'),
+    'composer_json' => base_path('/composer.json'),
+    'repositories' => [],
 ];

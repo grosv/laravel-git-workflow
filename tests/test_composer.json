@@ -1,8 +1,8 @@
 {
-    "name": "grosv/laravel-git-workflow",
-    "description": "A repository template for Laravel packages",
-    "type": "library",
-    "license": "MIT",
+    "name": "grosv/totally-fake-package",
+    "description": "A beautiful work of fiction",
+    "type": "pipe-dream",
+    "license": "Imaginary",
     "authors": [
         {
             "name": "Ed Grosvenor",
@@ -31,6 +31,16 @@
             "App\\": "vendor/orchestra/testbench-core/laravel/app"
         }
     },
+    "repositories": [
+        {
+            "type": "path",
+            "url": "../../packages/edgrosvenor/my-sad-package"
+        },
+        {
+            "url": "../../packages/edgrosvenor/my-crazy-package",
+            "type": "path"
+        }
+    ],
     "extra": {
         "laravel": {
             "providers": "Grosv\\LaravelGitWorkflow\\LaravelGitWorkflowProvider"
