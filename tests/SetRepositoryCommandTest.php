@@ -1,6 +1,5 @@
 <?php
 
-
 namespace Tests;
 
 use Illuminate\Support\Facades\Config;
@@ -14,14 +13,14 @@ class SetRepositoryCommandTest extends TestCase
     {
         parent::setUp();
 
-        Config::set('laravel-git-workflow.composer_json', __DIR__ . '/test_composer.json');
+        Config::set('laravel-git-workflow.composer_json', __DIR__.'/test_composer.json');
         Config::set('laravel-git-workflow.repositories', [
-           'my-happy-package' => [
-               'git' => 'https://github.com/edgrosvenor/my-happy-package',
-               'path' => '../../packages/edgrosvenor/my-happy-package',
-           ],
+            'my-happy-package' => [
+                'git'  => 'https://github.com/edgrosvenor/my-happy-package',
+                'path' => '../../packages/edgrosvenor/my-happy-package',
+            ],
             'my-crazy-package' => [
-                'git' => 'https://github.com/edgrosvenor/my-crazy-package',
+                'git'  => 'https://github.com/edgrosvenor/my-crazy-package',
                 'path' => '../../packages/edgrosvenor/my-crazy-package',
             ],
             'my-sad-package' => [
