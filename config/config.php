@@ -7,5 +7,5 @@ return [
     'wip'           => env('LGW_WIP', 'WIP'),
     'env'           => base_path('.env'),
     'composer_json' => base_path('/composer.json'),
-    'repositories' => [],
+    'repositories'  => [],
 ];
