@@ -14,11 +14,15 @@
     "require": {
         "php": "^7.4",
         "illuminate/support": "^7.0",
-        "ext-json": "*"
-    },
+        "ext-json": "*",
+        "edgrosvenor/my-sad-package": "^4.2",
+        "edgrosvenor/my-crazy-package": "dev-master",
+    }
     "require-dev": {
         "orchestra/testbench": "^5.0",
-        "nunomaduro/collision": "^4.1"
+        "nunomaduro/collision": "^4.1",
+        "edgrosvenor/my-happy-package": "^5.2",
+
     },
     "autoload": {
         "psr-4": {

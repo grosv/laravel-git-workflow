@@ -18,13 +18,16 @@ class SetRepositoryCommandTest extends TestCase
             'my-happy-package' => [
                 'git'  => 'https://github.com/edgrosvenor/my-happy-package',
                 'path' => '../../packages/edgrosvenor/my-happy-package',
+                "version" => "^5.2",
             ],
             'my-crazy-package' => [
                 'git'  => 'https://github.com/edgrosvenor/my-crazy-package',
                 'path' => '../../packages/edgrosvenor/my-crazy-package',
+                "version" => "^1.6"
             ],
             'my-sad-package' => [
                 'path' => '../../packages/edgrosvenor/my-sad-package',
+                "version" => "dev-master",
             ],
         ]);
 
@@ -49,10 +52,13 @@ class SetRepositoryCommandTest extends TestCase
         $updated = json_decode(File::get(config('laravel-git-workflow.composer_json')), true);
 
         $this->assertEquals(['type' => 'git', 'url' => 'https://github.com/edgrosvenor/my-crazy-package'], $updated['repositories'][2]);
+        $this->assertEquals('^1.6', $updated['require']['edgrosvenor/my-crazy-package']);
 
         $this->artisan('repo my-crazy-package path');
 
         $updated = json_decode(File::get(config('laravel-git-workflow.composer_json')), true);
+
+        $this->assertEquals('dev-master', $updated['require']['edgrosvenor/my-crazy-package']);
 
         $this->assertEquals(['type' => 'path', 'url' => '../../packages/edgrosvenor/my-crazy-package'], $updated['repositories'][2]);
 
@@ -60,17 +66,23 @@ class SetRepositoryCommandTest extends TestCase
 
         $updated = File::get(config('laravel-git-workflow.composer_json'));
 
-        $this->assertStringNotContainsString('my-crazy-package', $updated);
+        $this->assertStringContainsString('"edgrosvenor/my-crazy-package": "^1.6"', $updated);
+
+        $this->assertStringNotContainsString('../../packages/edgrosvenor/my-crazy-package', $updated);
 
         $this->artisan('repo my-crazy-package path');
 
         $updated = json_decode(File::get(config('laravel-git-workflow.composer_json')), true);
+
+        $this->assertEquals('dev-master', $updated['require']['edgrosvenor/my-crazy-package']);
 
         $this->assertEquals(['type' => 'path', 'url' => '../../packages/edgrosvenor/my-crazy-package'], $updated['repositories'][2]);
 
         $this->artisan('repo my-crazy-package git');
 
         $updated = json_decode(File::get(config('laravel-git-workflow.composer_json')), true);
+
+        $this->assertEquals('^1.6', $updated['require']['edgrosvenor/my-crazy-package']);
 
         $this->assertEquals(['type' => 'git', 'url' => 'https://github.com/edgrosvenor/my-crazy-package'], $updated['repositories'][2]);
     }
@@ -84,7 +96,7 @@ class SetRepositoryCommandTest extends TestCase
 
         $updated = File::get(config('laravel-git-workflow.composer_json'));
 
-        $this->assertStringNotContainsString('my-sad-package', $updated);
+        $this->assertStringNotContainsString('../../packages/edgrosvenor/my-sad-package', $updated);
 
         $this->assertIsArray(json_decode($updated, true));
     }
