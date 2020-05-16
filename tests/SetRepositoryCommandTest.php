@@ -16,18 +16,18 @@ class SetRepositoryCommandTest extends TestCase
         Config::set('laravel-git-workflow.composer_json', __DIR__.'/test_composer.json');
         Config::set('laravel-git-workflow.repositories', [
             'my-happy-package' => [
-                'git'  => 'https://github.com/edgrosvenor/my-happy-package',
-                'path' => '../../packages/edgrosvenor/my-happy-package',
-                "version" => "^5.2",
+                'git'     => 'https://github.com/edgrosvenor/my-happy-package',
+                'path'    => '../../packages/edgrosvenor/my-happy-package',
+                'version' => '^5.2',
             ],
             'my-crazy-package' => [
-                'git'  => 'https://github.com/edgrosvenor/my-crazy-package',
-                'path' => '../../packages/edgrosvenor/my-crazy-package',
-                "version" => "^1.6"
+                'git'     => 'https://github.com/edgrosvenor/my-crazy-package',
+                'path'    => '../../packages/edgrosvenor/my-crazy-package',
+                'version' => '^1.6',
             ],
             'my-sad-package' => [
-                'path' => '../../packages/edgrosvenor/my-sad-package',
-                "version" => "dev-master",
+                'path'    => '../../packages/edgrosvenor/my-sad-package',
+                'version' => 'dev-master',
             ],
         ]);
 

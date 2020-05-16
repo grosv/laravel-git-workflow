@@ -50,13 +50,13 @@ class SetRepository extends Command
 
         foreach ($composer['require'] ?? [] as $k => $v) {
             if (Str::contains($k, $this->package)) {
-                $composer['require'][$k] = $this->repo === 'path' ?  'dev-master' : $new['version'];
+                $composer['require'][$k] = $this->repo === 'path' ? 'dev-master' : $new['version'];
             }
         }
 
         foreach ($composer['require-dev'] ?? [] as $k => $v) {
             if (Str::contains($k, $this->package)) {
-                $composer['require'][$k] = $this->repo === 'path' ?  'dev-master' : $new['version'];
+                $composer['require'][$k] = $this->repo === 'path' ? 'dev-master' : $new['version'];
             }
         }
 
