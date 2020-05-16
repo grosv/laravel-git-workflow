@@ -48,7 +48,7 @@ class SetRepository extends Command
         }
 
         if (!$found) {
-            $composer['repositories'][] = ['url' => $new['path'], 'type' => $this->repo];
+            $composer['repositories'][] = ['url' => $new[$this->repo], 'type' => $this->repo];
         }
 
         File::put(config('laravel-git-workflow.composer_json'), json_encode($composer, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES));
