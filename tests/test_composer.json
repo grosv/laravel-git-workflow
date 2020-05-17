@@ -1,58 +1,56 @@
 {
-    "name": "grosv/totally-fake-package",
-    "description": "A beautiful work of fiction",
-    "type": "pipe-dream",
-    "license": "Imaginary",
-    "authors": [
-        {
-            "name": "Ed Grosvenor",
-            "email": "ed.grosvenor@wickedviral.com"
-        }
-    ],
-    "minimum-stability": "dev",
-    "prefer-stable": true,
-    "require": {
-        "php": "^7.4",
-        "illuminate/support": "^7.0",
-        "ext-json": "*",
-        "edgrosvenor/my-sad-package": "^4.2",
-        "edgrosvenor/my-crazy-package": "dev-master"
-    },
-    "require-dev": {
-        "orchestra/testbench": "^5.0",
-        "nunomaduro/collision": "^4.1",
-        "edgrosvenor/my-happy-package": "^5.2"
-
-    },
-    "autoload": {
-        "psr-4": {
-            "Grosv\\LaravelGitWorkflow\\": "src/"
-        }
-    },
-    "autoload-dev": {
-        "psr-4": {
-            "Tests\\": "tests/",
-            "App\\": "vendor/orchestra/testbench-core/laravel/app"
-        }
-    },
-    "repositories": [
-        {
-            "url": "https://github.com/edgrosvenor/my-happy-package",
-            "type": "git"
-        },
-        {
-            "url": "../../packages/edgrosvenor/my-sad-package",
-            "type": "git"
-        },
-        {
-            "url": "https://github.com/edgrosvenor/my-crazy-package",
-            "type": "git"
-        }
-
-    ],
-    "extra": {
-        "laravel": {
-            "providers": "Grosv\\LaravelGitWorkflow\\LaravelGitWorkflowProvider"
-        }
+  "name": "grosv/totally-fake-package",
+  "description": "A beautiful work of fiction",
+  "type": "pipe-dream",
+  "license": "Imaginary",
+  "authors": [
+    {
+      "name": "Ed Grosvenor",
+      "email": "ed.grosvenor@wickedviral.com"
     }
+  ],
+  "minimum-stability": "dev",
+  "prefer-stable": true,
+  "require": {
+    "php": "^7.4",
+    "illuminate/support": "^7.0",
+    "ext-json": "*",
+    "edgrosvenor/my-sad-package": "^4.2",
+    "edgrosvenor/my-crazy-package": "dev-master"
+  },
+  "require-dev": {
+    "orchestra/testbench": "^5.0",
+    "nunomaduro/collision": "^4.1",
+    "edgrosvenor/my-happy-package": "^5.2"
+  },
+  "autoload": {
+    "psr-4": {
+      "Grosv\\LaravelGitWorkflow\\": "src/"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "Tests\\": "tests/",
+      "App\\": "vendor/orchestra/testbench-core/laravel/app"
+    }
+  },
+  "repositories": [
+    {
+      "url": "https://github.com/edgrosvenor/my-happy-package",
+      "type": "git"
+    },
+    {
+      "url": "../../packages/edgrosvenor/my-sad-package",
+      "type": "git"
+    },
+    {
+      "url": "https://github.com/edgrosvenor/my-crazy-package",
+      "type": "git"
+    }
+  ],
+  "extra": {
+    "laravel": {
+      "providers": "Grosv\\LaravelGitWorkflow\\LaravelGitWorkflowProvider"
+    }
+  }
 }

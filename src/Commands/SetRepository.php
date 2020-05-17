@@ -60,7 +60,7 @@ class SetRepository extends Command
             }
         }
 
-        if (!$found) {
+        if (!$found && isset($new[$this->repo])) {
             $composer['repositories'][] = ['url' => $new[$this->repo], 'type' => $this->repo];
         }
 
