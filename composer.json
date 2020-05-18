@@ -15,7 +15,8 @@
         "php": "^7.4",
         "illuminate/support": "^7.0",
         "ext-json": "*",
-        "ext-mysqli": "*"
+        "ext-mysqli": "*",
+        "titasgailius/terminal": "^0.3.0"
     },
     "require-dev": {
         "orchestra/testbench": "^5.0",

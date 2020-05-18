@@ -4,6 +4,7 @@ namespace Grosv\LaravelGitWorkflow;
 
 use Grosv\LaravelGitWorkflow\Commands\CloseIssue;
 use Grosv\LaravelGitWorkflow\Commands\EndDay;
+use Grosv\LaravelGitWorkflow\Commands\NewProject;
 use Grosv\LaravelGitWorkflow\Commands\SetRepository;
 use Grosv\LaravelGitWorkflow\Commands\StartDay;
 use Grosv\LaravelGitWorkflow\Commands\StartIssue;
@@ -22,6 +23,7 @@ class LaravelGitWorkflowProvider extends ServiceProvider
                 StartIssue::class,
                 UpdateIssue::class,
                 SetRepository::class,
+                NewProject::class,
             ]);
         }
 

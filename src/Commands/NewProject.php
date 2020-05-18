@@ -9,7 +9,7 @@ use Grosv\LaravelGitWorkflow\Actions\CreateLocalDatabase;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\File;
-use Symfony\Component\Console\Terminal;
+use TitasGailius\Terminal\Terminal;
 
 class NewProject extends Command
 {
