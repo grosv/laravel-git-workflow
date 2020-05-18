@@ -14,7 +14,8 @@
     "require": {
         "php": "^7.4",
         "illuminate/support": "^7.0",
-        "ext-json": "*"
+        "ext-json": "*",
+        "ext-mysqli": "*"
     },
     "require-dev": {
         "orchestra/testbench": "^5.0",

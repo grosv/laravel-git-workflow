@@ -1,0 +1,14 @@
+<?php
+
+return [
+    'color' => '{color}',
+    'social' => [
+        'facebook' => '{facebook}',
+        'github' => '{github}',
+        'instagram' => '{instagram}',
+        'twitter' => '{twitter}',
+    ],
+    'footer' => '{footer}',
+    'layout' => '{layout}',
+    'copyright' => '{copyright}',
+];

@@ -30,7 +30,7 @@ class SetRepository extends Command
         }
 
         $new = $packages[$this->package];
-        $new['version'] ??= '*';
+        $new['version'] ??= 'dev-master';
 
         $composer = json_decode(File::get(config('laravel-git-workflow.composer_json')), true);
 
@@ -50,13 +50,13 @@ class SetRepository extends Command
 
         foreach ($composer['require'] ?? [] as $k => $v) {
             if (Str::contains($k, $this->package)) {
-                $composer['require'][$k] = $this->repo === 'path' ? '*' : $new['version'];
+                $composer['require'][$k] = $this->repo === 'path' ? 'dev-master' : $new['version'];
             }
         }
 
         foreach ($composer['require-dev'] ?? [] as $k => $v) {
             if (Str::contains($k, $this->package)) {
-                $composer['require-dev'][$k] = $this->repo === 'path' ? '*' : $new['version'];
+                $composer['require-dev'][$k] = $this->repo === 'path' ? 'dev-master' : $new['version'];
             }
         }
 

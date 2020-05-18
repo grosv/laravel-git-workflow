@@ -1,0 +1,7 @@
+LGW_PROJECT_OWNER=edgrosvenor
+LGW_GITHUB_USER=edgrosvenor
+LGW_WIP=WIP
+LGW_REPOS_STUBBY_PATH=../../../Packages/grosv/stubby
+LGW_REPOS_LGW_PATH=../../../Packages/grosv/laravel-git-workflow
+LGW_REPOS_SHEETS_PATH=../../../Packages/grosv/eloquent-sheets
+LGW_REPOS_PASSWORDLESS_PATH=../../../Packages/grosv/laravel-passwordless-login
