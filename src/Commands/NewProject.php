@@ -49,7 +49,7 @@ class NewProject extends Command
                 File::get(__DIR__.'/stubs/env_mysql.stub')
             );
 
-            File::append(base_path('.env'), "\n" . $env);
+            File::append(base_path('.env'), $env);
 
             Config::set('database.db_username', $db_username);
             Config::set('database.db_password', $db_password);
