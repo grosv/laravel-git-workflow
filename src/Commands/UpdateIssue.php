@@ -53,7 +53,7 @@ class UpdateIssue extends Command
             $this->call('repo', ['package' => $k, 'repo' => 'path']);
         }
 
-        $this->git->execute('git commit -m "Reset composer.json to use symlinked packages."');
+        $this->git->execute('git commit -m "'.$this->message.'"');
 
         $this->info('Your commit has been added to the pull request.');
     }
