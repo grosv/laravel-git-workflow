@@ -52,9 +52,10 @@ class UpdateIssue extends Command
         foreach ($this->repos  as $k => $v) {
             $this->call('repo', ['package' => $k, 'repo' => 'path']);
         }
-
+        $this->git->execute('git add .');
         $this->git->execute('git commit -m "'.$this->message.'"');
 
         $this->info('Your commit has been added to the pull request.');
+        return 0;
     }
 }
