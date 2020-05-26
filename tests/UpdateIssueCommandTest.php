@@ -65,8 +65,5 @@ class UpdateIssueCommandTest extends TestCase
 
         $updated = File::get(config('laravel-git-workflow.composer_json'));
 
-        $this->assertStringContainsString('../../packages/edgrosvenor/my-sad-package', $updated);
-        $this->assertStringContainsString('../../packages/edgrosvenor/my-happy-package', $updated);
-        $this->assertStringContainsString('../../packages/edgrosvenor/my-crazy-package', $updated);
     }
 }
