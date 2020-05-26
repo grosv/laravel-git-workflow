@@ -64,6 +64,5 @@ class UpdateIssueCommandTest extends TestCase
             ->assertExitCode(0);
 
         $updated = File::get(config('laravel-git-workflow.composer_json'));
-
     }
 }

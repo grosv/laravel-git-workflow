@@ -36,7 +36,6 @@ class UpdateIssue extends Command
             $this->message = config('laravel-git-workflow.wip');
         }
 
-
         $this->git->execute('git add .');
         $this->git->execute('git commit -m "'.$this->message.'"');
         $this->git->execute('git pull --rebase');
@@ -50,6 +49,7 @@ class UpdateIssue extends Command
         $this->git->execute('git commit -m "'.$this->message.'"');
 
         $this->info('Your commit has been added to the pull request.');
+
         return 0;
     }
 }

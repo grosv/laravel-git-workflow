@@ -1,8 +1,6 @@
 <?php
 
-
 namespace Grosv\LaravelGitWorkflow\Actions;
-
 
 use mysqli;
 
@@ -25,11 +23,12 @@ class CreateLocalDatabase
             return false;
         }
 
-        if (!$conn->query('CREATE DATABASE ' . $this->db_name)) {
+        if (!$conn->query('CREATE DATABASE '.$this->db_name)) {
             return false;
         }
 
         $conn->close();
+
         return true;
     }
 }

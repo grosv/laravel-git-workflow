@@ -1,8 +1,6 @@
 <?php
 
-
 namespace Grosv\LaravelGitWorkflow\Commands;
-
 
 use Faker\Generator;
 use Grosv\LaravelGitWorkflow\Actions\CreateLocalDatabase;
@@ -36,16 +34,17 @@ class NewProject extends Command
         $db = $this->choice('What database do you want to use for your local development?', ['MySQL', 'sqlite', 'None']);
 
         if ($db == 'sqlite') {
-            Terminal::run('touch ' . database_path('database.sqlite'));
+            Terminal::run('touch '.database_path('database.sqlite'));
             File::append(base_path('.env'), File::get(__DIR__.'/stubs/env_sqlite.stub'));
         }
 
         if ($db == 'MySQL') {
             $db_username = $this->ask('What is your database username?', 'root');
-            $db_password = $this->ask('What is the password for ' . $db_username .'?', '');
+            $db_password = $this->ask('What is the password for '.$db_username.'?', '');
             $db_database = $this->ask('What do you want to name your database?', Str::snake($this->faker->words(2, true)));
 
-            $env = str_replace(['{DB_USERNAME}', '{DB_PASSWORD}', '{DB_DATABASE}'],
+            $env = str_replace(
+                ['{DB_USERNAME}', '{DB_PASSWORD}', '{DB_DATABASE}'],
                 [$db_username, $db_password, $db_database],
                 File::get(__DIR__.'/stubs/env_mysql.stub')
             );
@@ -64,15 +63,16 @@ class NewProject extends Command
 
         // Create Launch Checklist Issue if Not Exists
         foreach ($issues->lines() as $line) {
-            if (Str::contains((string)$line, 'Launch Checklist')) {
+            if (Str::contains((string) $line, 'Launch Checklist')) {
                 $this->launchChecklist = true;
             }
         }
 
         if (!$this->launchChecklist) {
-            $response = Terminal::run('gh issue create --title="Launch Checklist" --body="'. File::get(base_path('LAUNCH.md')) .'"');
+            $response = Terminal::run('gh issue create --title="Launch Checklist" --body="'.File::get(base_path('LAUNCH.md')).'"');
             if (!$response->ok()) {
                 $this->error('Failed to create launch checklist issue!');
+
                 return 1;
             }
             $this->info('Launch checklist issue created.');
@@ -99,7 +99,7 @@ class NewProject extends Command
             $after[] = $v;
         }
 
-        $theme = str_replace($before, $after, File::get(__DIR__ . '/stubs/theme.stub'));
+        $theme = str_replace($before, $after, File::get(__DIR__.'/stubs/theme.stub'));
 
         File::put(base_path('config/theme.php'), $theme);
 
