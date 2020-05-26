@@ -36,9 +36,6 @@ class UpdateIssue extends Command
             $this->message = config('laravel-git-workflow.wip');
         }
 
-        foreach ($this->repos as $k => $v) {
-            $this->call('repo', ['package' => $k, 'repo' => 'git']);
-        }
 
         $this->git->execute('git add .');
         $this->git->execute('git commit -m "'.$this->message.'"');
@@ -49,9 +46,6 @@ class UpdateIssue extends Command
             $this->call('issue:close');
         }
 
-        foreach ($this->repos  as $k => $v) {
-            $this->call('repo', ['package' => $k, 'repo' => 'path']);
-        }
         $this->git->execute('git add .');
         $this->git->execute('git commit -m "'.$this->message.'"');
 
