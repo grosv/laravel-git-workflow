@@ -45,9 +45,6 @@ class UpdateIssue extends Command
             $this->call('issue:close');
         }
 
-        $this->git->execute('git add .');
-        $this->git->execute('git commit -m "'.$this->message.'"');
-
         $this->info('Your commit has been added to the pull request.');
 
         return 0;
