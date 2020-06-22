@@ -22,7 +22,6 @@ class ParseGitHubIssues
                 );
             }
         }
-
         return $this->issues;
     }
 }
