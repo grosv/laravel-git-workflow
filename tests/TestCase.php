@@ -20,6 +20,8 @@ abstract class TestCase extends BaseTestCase
 
         Config::set('laravel-git-workflow.env', __DIR__.'/.env');
 
+        Config::set('laravel-git-workflow.stub', 'main');
+
         $this->resetDotEnv();
     }
 

@@ -38,15 +38,15 @@ class UpdateIssueCommandTest extends TestCase
     }
 
     /** @test */
-    public function it_will_not_let_you_commit_directly_to_master()
+    public function it_will_not_let_you_commit_directly_to_trunk()
     {
         $this->mock(GetCurrentBranchName::class, function ($mock) {
             $mock->shouldReceive('execute')
-                ->andReturn('master');
+                ->andReturn(config('laravel-git-workflow.trunk'));
         });
 
         $this->artisan('commit', ['message' => 'WIP'])
-            ->expectsOutput('You cannot commit directly to the master branch. Run `php artisan issue:start` to get to your feature branch.')
+            ->expectsOutput('You cannot commit directly to the '.config('laravel-git-workflow.trunk').' branch. Run `php artisan issue:start` to get to your feature branch.')
             ->assertExitCode(1);
     }
 

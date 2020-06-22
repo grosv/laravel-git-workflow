@@ -8,6 +8,7 @@ use Grosv\LaravelGitWorkflow\Actions\ParseGitHubIssues;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\File;
+use Illuminate\Support\Str;
 use Symfony\Component\Process\Process;
 
 class StartDay extends Command
@@ -51,12 +52,12 @@ class StartDay extends Command
 
         $this->info('✔️ GitHub CLI appears to be installed');
 
-        $this->git->execute('git checkout master');
+        $this->git->execute('git checkout '.config('laravel-git-workflow.trunk'));
 
-        $this->info('✔️ Checked out master');
+        $this->info('✔️ Checked out '.config('laravel-git-workflow.trunk'));
         $this->git->execute('git pull --rebase');
 
-        $this->info('✔️ Master is up to date');
+        $this->info('✔️ '.Str::title(config('laravel-git-workflow.trunk')).' is up to date');
 
         $issues = $this->git->execute('gh issue list')->getOutput();
         $open = $this->issues->execute($issues);

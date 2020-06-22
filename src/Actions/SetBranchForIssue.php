@@ -26,14 +26,18 @@ class SetBranchForIssue
         if (in_array($issue, $branches)) {
             $this->git->execute('git checkout '.$this->branch);
             $this->git->execute('git fetch');
-            $this->git->execute('git rebase origin/master');
+            $this->git->execute('git rebase origin/'.config('laravel-git-workflow.trunk'));
 
             return 'Checked Out Existing Branch '.$issue;
         }
         $this->git->execute('git checkout -b '.$this->branch);
         $this->git->execute('git commit --allow-empty -m "'.config('laravel-git-workflow.wip').'"');
         $this->git->execute('git push -u origin '.$this->branch);
-        $this->git->execute('gh pr create -t '.urlencode(Str::title(str_replace('_', ' ', $this->branch))).' -b "'.config('laravel-git-workflow.wip').'" -d');
+        $pr = 'gh pr create -t '.urlencode(Str::title(str_replace('_', ' ', $this->branch))).' -b "'.config('laravel-git-workflow.wip').'"';
+        if (config('laravel-git-workflow.use_draft_prs')) {
+            $pr .= ' -d';
+        }
+        $this->git->execute($pr);
 
         return 'Created Branches and Draft PR for '.$issue;
     }
