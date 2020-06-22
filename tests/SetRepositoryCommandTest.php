@@ -27,7 +27,7 @@ class SetRepositoryCommandTest extends TestCase
             ],
             'my-sad-package' => [
                 'path'    => '../../packages/edgrosvenor/my-sad-package',
-                'version' => 'dev-master',
+                'version' => '*',
             ],
         ]);
 
@@ -58,7 +58,7 @@ class SetRepositoryCommandTest extends TestCase
 
         $updated = json_decode(File::get(config('laravel-git-workflow.composer_json')), true);
 
-        $this->assertEquals('dev-master', $updated['require']['edgrosvenor/my-crazy-package']);
+        $this->assertEquals('*', $updated['require']['edgrosvenor/my-crazy-package']);
 
         $this->assertEquals(['type' => 'path', 'url' => '../../packages/edgrosvenor/my-crazy-package'], $updated['repositories'][2]);
 
@@ -74,7 +74,7 @@ class SetRepositoryCommandTest extends TestCase
 
         $updated = json_decode(File::get(config('laravel-git-workflow.composer_json')), true);
 
-        $this->assertEquals('dev-master', $updated['require']['edgrosvenor/my-crazy-package']);
+        $this->assertEquals('*', $updated['require']['edgrosvenor/my-crazy-package']);
 
         $this->assertEquals(['type' => 'path', 'url' => '../../packages/edgrosvenor/my-crazy-package'], $updated['repositories'][2]);
 

@@ -23,8 +23,8 @@ class CloseIssue extends Command
 
     public function handle()
     {
-        if ($this->branch === 'master') {
-            $this->error('You cannot request a code review on the master branch. Run `php artisan issue:start` to get on your feature branch.');
+        if ($this->branch === config('laravel-git-workflow.trunk')) {
+            $this->error('You cannot request a code review on the main branch. Run `php artisan issue:start` to get on your feature branch.');
 
             return 1;
         }
@@ -34,6 +34,8 @@ class CloseIssue extends Command
         $this->git->execute('git commit -m "Requesting+a+code+review+from+'.$this->owner.'" --allow-empty');
 
         $this->git->execute('git push');
+
+        $this->git->execute('gh pull ready ' . $this->branch);
 
         $this->info('You have requested a code review of '.$this->branch.' by '.$this->owner.'.');
     }

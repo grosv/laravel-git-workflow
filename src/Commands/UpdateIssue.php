@@ -26,14 +26,15 @@ class UpdateIssue extends Command
     {
         $this->message = $this->argument('message');
 
-        if ($this->branch === 'master') {
-            $this->error('You cannot commit directly to the master branch. Run `php artisan issue:start` to get to your feature branch.');
+
+        if ($this->branch === config('laravel-git-workflow.trunk')) {
+            $this->error('You cannot commit directly to the '.config('laravel-git-workflow.trunk').' branch. Run `php artisan issue:start` to get to your feature branch.');
 
             return 1;
         }
 
         if (strlen($this->message) < 1) {
-            $this->message = config('laravel-git-workflow.wip');
+            $this->message = $this->ask('Please enter a commit message:', config('laravel-git-workflow.wip'));
         }
 
         $this->git->execute('git add .');
