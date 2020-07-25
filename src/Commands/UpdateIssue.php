@@ -26,7 +26,6 @@ class UpdateIssue extends Command
     {
         $this->message = $this->argument('message');
 
-
         if ($this->branch === config('laravel-git-workflow.trunk')) {
             $this->error('You cannot commit directly to the '.config('laravel-git-workflow.trunk').' branch. Run `php artisan issue:start` to get to your feature branch.');
 
