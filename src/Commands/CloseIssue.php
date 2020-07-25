@@ -35,7 +35,7 @@ class CloseIssue extends Command
 
         $this->git->execute('git push');
 
-        $this->git->execute('gh pull ready ' . $this->branch);
+        $this->git->execute('gh pull ready '.$this->branch);
 
         $this->info('You have requested a code review of '.$this->branch.' by '.$this->owner.'.');
     }
